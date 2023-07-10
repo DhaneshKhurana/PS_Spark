@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PSNavMenu } from "./Nav/NavItems";
+import { PSNavMenu } from "./NavItems";
 
 const Header = () => {
   const [active, setActive] = useState("home");
