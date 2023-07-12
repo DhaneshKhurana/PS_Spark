@@ -1,4 +1,4 @@
-import { List, Panel, PanelGroup } from "rsuite";
+import { List, Panel } from "rsuite";
 
 export const LeftSidebar = () => {
   return (

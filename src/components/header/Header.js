@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { PSNavMenu } from "./NavItems";
+import { NavMenu } from "./NavMenu";
 
-const Header = () => {
+const Header = ({ onThemeChange }) => {
   const [active, setActive] = useState("home");
 
   function navItemChanged(navItem) {
@@ -11,10 +11,11 @@ const Header = () => {
 
   return (
     <>
-      <PSNavMenu
+      <NavMenu
         appearance="inverse"
         active={active}
         onSelect={navItemChanged}
+        onThemeChange={onThemeChange}
       />
     </>
   );

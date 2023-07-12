@@ -3,18 +3,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPostUsingId } from "../../data/PostController";
 import { Divider, Panel } from "rsuite";
+import { getCommentsForPost } from "../../data/CommentController";
+import { CommentSection } from "./CommentSection";
 
 export const DetailedPost = () => {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
+  const [comments, setComments] = useState(null);
 
   useEffect(() => {
     const pst = getPostUsingId(postId);
     console.log("post recieved::", pst);
-
-    setPost((prev) => {
-      return pst;
-    });
+    const cmnts = getCommentsForPost(postId);
+    setComments(cmnts);
+    setPost(pst);
   }, [postId]);
 
   if (post) {
@@ -32,11 +34,8 @@ export const DetailedPost = () => {
         <Divider />
         <p>{post.content}</p>
         <Divider />
-        <h4>Related Posts</h4>
-        {/* Render related posts here */}
-        <Divider />
-        <h4>Comments</h4>
-        {/* Render comments section here */}
+
+        <CommentSection comments={comments} />
       </Panel>
     );
   } else {

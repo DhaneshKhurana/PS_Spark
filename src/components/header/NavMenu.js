@@ -1,10 +1,10 @@
 import { Nav, Navbar } from "rsuite";
 import HomeIcon from "@rsuite/icons/legacy/Home";
-import CogIcon from "@rsuite/icons/legacy/Cog";
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
+import { ThemeToggle } from "./ThemeToggle";
 
-export const PSNavMenu = ({ active, onSelect, ...props }) => {
+export const NavMenu = ({ active, onSelect, onThemeChange, ...props }) => {
   const NavLink = forwardRef(({ href, children, ...rest }, ref) => (
     <Link ref={ref} to={href} {...rest}>
       {children}
@@ -30,8 +30,11 @@ export const PSNavMenu = ({ active, onSelect, ...props }) => {
         <Nav.Item eventKey="contact" as={NavLink}>
           Contact Us
         </Nav.Item>
-
-        <Nav.Item icon={<CogIcon />}>Settings</Nav.Item>
+      </Nav>
+      <Nav pullRight>
+        <Nav.Item>
+          <ThemeToggle onThemeChange={onThemeChange} />
+        </Nav.Item>
       </Nav>
     </Navbar>
   );
