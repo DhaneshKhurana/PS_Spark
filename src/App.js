@@ -1,22 +1,22 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/header/Header";
 import "rsuite/dist/rsuite.min.css";
-import { Sidebars } from "./components/sidebars/SideBars";
-import { LeftSidebar } from "./components/sidebars/LeftSideBar";
-import { RightSidebar } from "./components/sidebars/RightSideBar";
+import { PostGrid } from "./components/blogPost/PostGrid";
+import { getPosts } from "./data/PostController";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Main from "./components/Main";
+import { DetailedPost } from "./components/blogPost/DetailedPost";
 
 function App() {
   return (
-    <div className="App">
-      <div>
-        <Header />
-      </div>
-      <div className="mainContainer">
-        <LeftSidebar />
-        <RightSidebar />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />}>
+          <Route path="/posts" element={<PostGrid posts={getPosts()} />} />
+          <Route path="/posts/:postId" element={<DetailedPost />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
